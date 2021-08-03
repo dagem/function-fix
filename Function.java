@@ -55,7 +55,7 @@ public class Function {
 
     public static void main(String[] args) throws IOException {
         Function T = new Function();
-        File output = T.fileCreation("/etc/modprobe.d/hid_Function.conf");
+        File output = T.fileCreation("/etc/modprobe.d/hid_apple.conf");
         String command = "options hid_Function fnmode=2";
 
         FileOutputStream fileOut = new FileOutputStream(output);

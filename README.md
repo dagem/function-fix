@@ -10,19 +10,21 @@ Instructions:
 
 2.) Open terminal
 
-3.) Clone repository
 
-4.) Either manually compile or run the .jar file
-
-Executing the jar file:
+#Jar file:
 
 Type `sudo java -jar functionFix.jar`
 
     the reason that we need "sudo" is that the directory is in a restricted area
 
-Compiling it:
+
+#Compiling it:
+
+Clone `https://github.com/dagem/function-fix.git`
+
 
 Type `javac functionFix.java`
+
 
 Run `sudo java functionFix`
 
