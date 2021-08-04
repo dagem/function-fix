@@ -4,7 +4,7 @@ NOTE: This has only been tested on Arch Linux
 Dependencies:
 Java 8 or better
 
-Instructions:
+# Instructions:
 
 1.) Download Java 8 or better
 
