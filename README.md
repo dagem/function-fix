@@ -23,9 +23,9 @@ Type `sudo java -jar functionFix.jar`
 Clone `https://github.com/dagem/function-fix.git`
 
 
-Type `javac functionFix.java`
+Type `javac Function.java`
 
 
-Run `sudo java functionFix`
+Run `sudo java Function`
 
     sudo for the same reasons as above
