@@ -60,6 +60,7 @@ public class Function {
 
         FileOutputStream fileOut = new FileOutputStream(output);
         fileOut.write(command.getBytes());
+        Runtime.getRuntime().exec("echo 2 > /sys/module/hid_apple/parameters/fnmode");
 
     }
 }
