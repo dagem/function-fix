@@ -1,7 +1,7 @@
 # Function Fix for Linux
-NOTE: This has only been tested on Arch Linux
+NOTE: This has only been tested on Arch and Debian 11
 
-Dependencies:
+# Dependencies:
 Java 8 or better
 
 # Instructions:
