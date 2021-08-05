@@ -5,46 +5,50 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Function {
-    public Function(){
+    public Function() {
 
     }
-    public File fileCreation(String fileName){
+
+    public File fileCreation(String fileName) {
         File newFile = null;
         String finalPath = "";
-        if(fileName.equals(null)){
+        if (fileName.equals(null)) {
             throw new IllegalArgumentException("filename cannot be null");
-        }
-        else {
+        } else {
             newFile = new File(fileName);
         }
         Path newPath = Paths.get(fileName);
-        if(!Files.exists(newPath)){
+        if (!Files.exists(newPath)) {
             int last = fileName.lastIndexOf("/");
-            finalPath = fileName.substring(0,last + 1);
+            finalPath = fileName.substring(0, last + 1);
             pathCreation(finalPath);
         }
+        String actualName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.length());
         try {
             if (newFile.createNewFile()) {
                 System.out.println("new file created " + newFile.getName() + " at " + finalPath);
+            } else {
+                System.out.println("\"" + actualName + "\"" + " already exists. applying any changes");
             }
-            else{
-                System.out.println("file already exists. applying any changes");
-            }
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println("an error occurred");
             e.printStackTrace();
         }
         return newFile;
     }
-    public boolean pathCreation(String path){
-        if(path == null){
+
+    public boolean pathCreation(String path) {
+        if (path == null) {
             throw new IllegalArgumentException("path cannot be null");
         }
         Path newPath = Paths.get(path);
-        if(!Files.exists(newPath)) {
+        if (!Files.exists(newPath)) {
+            System.out.println("directory does not exist......");
+            System.out.println(".....creating new directory");
             File pathFile = new File(path); //creates a file named pathFile
             pathFile.mkdirs(); //creates a directory or directories given by the file name
             return true;
@@ -53,13 +57,56 @@ public class Function {
     }
 
     public static void main(String[] args) throws IOException {
-        Function T = new Function();
-        File output = T.fileCreation("/etc/modprobe.d/hid_apple.conf");
-        String command = "options hid_apple fnmode=2\n";
+        Scanner input = new Scanner(System.in);
+        boolean start = true;
+        while (start) {
 
-        FileOutputStream fileOut = new FileOutputStream(output);
-        fileOut.write(command.getBytes());
-        Runtime.getRuntime().exec("echo 2 > /sys/module/hid_apple/parameters/fnmode");
+            System.out.println("What would you like to set the function mode to? ");
+            System.out.println(" '0' Disables the function keys. ");
+            System.out.println(" '1' Sets modifiers to be priority. ");
+            System.out.println(" '2' Sets function keys to be priority");
+            System.out.print("Input: ");
+            int userDecision = input.nextInt();
+            while ((userDecision > 2 || userDecision < 0)) {
+                System.out.println("Error, mode can either be '0', '1', or '2'. retry.....");
+                System.out.print("Input: ");
+                userDecision = input.nextInt();
+            }
+            System.out.println();
+            Function T = new Function();
+            File temporary = T.fileCreation("/sys/module/hid_apple/parameters/fnmode");
+            File permanent = T.fileCreation("/etc/modprobe.d/hid_apple.conf");
 
+            String permanentComand = "options hid_apple fnmode=\n" + String.valueOf(userDecision);
+            String temporaryCommand = String.valueOf(userDecision);
+            FileOutputStream permanentOut = new FileOutputStream(permanent);
+            FileOutputStream temporaryOut = new FileOutputStream(temporary);
+
+            temporaryOut.write(temporaryCommand.getBytes());
+            permanentOut.write(permanentComand.getBytes());
+
+            System.out.println("\nWould you like to change the modifier again? (yes/no)");
+            System.out.print("Input: ");
+            Scanner newScanner = new Scanner(System.in);
+            String finalUserDecision = newScanner.nextLine();
+            if(finalUserDecision.toLowerCase().equals("y")) {
+                finalUserDecision = "yes";
+            }
+            if(finalUserDecision.toLowerCase().equals("n")){
+                finalUserDecision = "no";
+            }
+            while (!(finalUserDecision.toLowerCase().equals("yes") || finalUserDecision.toLowerCase().equals("no"))){
+                System.out.print("\nError, Input can either be 'yes' or 'no' (caps ignored)\nInput: ");
+                finalUserDecision = newScanner.nextLine();
+            }
+            if (finalUserDecision.toLowerCase().equals("yes") || finalUserDecision.toLowerCase().equals('y')){
+                start = true;
+            }
+            if (finalUserDecision.toLowerCase().equals("no") || finalUserDecision.toLowerCase().equals('n')) {
+                start = false;
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
