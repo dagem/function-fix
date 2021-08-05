@@ -77,7 +77,7 @@ public class Function {
             File temporary = T.fileCreation("/sys/module/hid_apple/parameters/fnmode");
             File permanent = T.fileCreation("/etc/modprobe.d/hid_apple.conf");
 
-            String permanentComand = "options hid_apple fnmode=\n" + String.valueOf(userDecision);
+            String permanentComand = "options hid_apple fnmode=" + String.valueOf(userDecision) + '\n';
             String temporaryCommand = String.valueOf(userDecision);
             FileOutputStream permanentOut = new FileOutputStream(permanent);
             FileOutputStream temporaryOut = new FileOutputStream(temporary);
