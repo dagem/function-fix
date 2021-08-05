@@ -26,7 +26,7 @@ public class Function {
             finalPath = fileName.substring(0, last + 1);
             pathCreation(finalPath);
         }
-        String actualName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.length());
+        String actualName = fileName.substring(fileName.lastIndexOf('/') + 1);
         try {
             if (newFile.createNewFile()) {
                 System.out.println("new file created " + newFile.getName() + " at " + finalPath);
@@ -76,7 +76,7 @@ public class Function {
             File temporary = T.fileCreation("/sys/module/hid_apple/parameters/fnmode");
             File permanent = T.fileCreation("/etc/modprobe.d/hid_apple.conf");
 
-            String permanentComand = "options hid_apple fnmode=" + String.valueOf(userDecision) + '\n';
+            String permanentComand = "options hid_apple fnmode=" + userDecision + '\n';
             String temporaryCommand = String.valueOf(userDecision);
             FileOutputStream permanentOut = new FileOutputStream(permanent);
             FileOutputStream temporaryOut = new FileOutputStream(temporary);
@@ -88,20 +88,20 @@ public class Function {
             System.out.print("Input: ");
             Scanner newScanner = new Scanner(System.in);
             String finalUserDecision = newScanner.nextLine();
-            if(finalUserDecision.toLowerCase().equals("y")) {
+            if(finalUserDecision.equalsIgnoreCase("y")) {
                 finalUserDecision = "yes";
             }
-            if(finalUserDecision.toLowerCase().equals("n")){
+            if(finalUserDecision.equalsIgnoreCase("n")){
                 finalUserDecision = "no";
             }
-            while (!(finalUserDecision.toLowerCase().equals("yes") || finalUserDecision.toLowerCase().equals("no"))){
+            while (!(finalUserDecision.equalsIgnoreCase("yes") || finalUserDecision.equalsIgnoreCase("no"))){
                 System.out.print("\nError, Input can either be 'yes' or 'no' (caps ignored)\nInput: ");
                 finalUserDecision = newScanner.nextLine();
             }
-            if (finalUserDecision.toLowerCase().equals("yes") || finalUserDecision.toLowerCase().equals('y')){
+            if (finalUserDecision.equalsIgnoreCase("yes") || finalUserDecision.equalsIgnoreCase("y")){
                 start = true;
             }
-            if (finalUserDecision.toLowerCase().equals("no") || finalUserDecision.toLowerCase().equals('n')) {
+            if (finalUserDecision.equalsIgnoreCase("no") || finalUserDecision.equalsIgnoreCase("n")){
                 start = false;
             }
             System.out.println();
