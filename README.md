@@ -1,4 +1,6 @@
 # Function Fix for Linux
+This program was created to fix the function keys defaulting to media keys on Mac based keyboards.
+
 NOTE: This has only been tested on Arch and Debian 11
 
 # Dependencies:

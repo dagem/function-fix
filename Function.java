@@ -97,7 +97,7 @@ public class Function {
             while (!(finalUserDecision.equalsIgnoreCase("yes") || finalUserDecision.equalsIgnoreCase("no"))){
                 System.out.print("\nError, Input can either be 'yes' or 'no' (caps ignored)\nInput: ");
                 finalUserDecision = newScanner.nextLine();
-            }
+            } 
             if (finalUserDecision.equalsIgnoreCase("yes") || finalUserDecision.equalsIgnoreCase("y")){
                 start = true;
             }
