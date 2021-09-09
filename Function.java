@@ -61,9 +61,9 @@ public class Function {
         while (start) {
 
             System.out.println("What would you like to set the function mode to? ");
-            System.out.println(" '0' Disables the function keys. ");
+            System.out.println(" '0' Sets normal function mode on Fedora. ");
             System.out.println(" '1' Sets modifiers to be priority. ");
-            System.out.println(" '2' Sets function keys to be priority");
+            System.out.println(" '2' Sets function keys to be priority on Arch & Debian");
             System.out.print("Input: ");
             int userDecision = input.nextInt();
             while ((userDecision > 2 || userDecision < 0)) {
