@@ -54,21 +54,24 @@ public class Function {
         }
         return false;
     }
-
+    public void prompt(){
+	System.out.println("What would you like to set the function mode to? ");
+	System.out.println(" '0' Sets normal function mode. ");
+	System.out.println(" '1' Sets modifiers to be priority. ");
+	System.out.println(" '2' Sets function keys to be priority. ");
+	System.out.print("Input: ");
+    }
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         boolean start = true;
         while (start) {
 
-            System.out.println("What would you like to set the function mode to? ");
-            System.out.println(" '0' Sets normal function mode on Fedora. ");
-            System.out.println(" '1' Sets modifiers to be priority. ");
-            System.out.println(" '2' Sets function keys to be priority on Arch & Debian");
-            System.out.print("Input: ");
+            Function prompt = new Function();
+	    prompt.prompt();
             int userDecision = input.nextInt();
             while ((userDecision > 2 || userDecision < 0)) {
-                System.out.println("Error, mode can either be '0', '1', or '2'. retry.....");
-                System.out.print("Input: ");
+                System.out.println("\nError, mode can either be '0', '1', or '2'. retry.....\n");
+                prompt.prompt();
                 userDecision = input.nextInt();
             }
             System.out.println();
