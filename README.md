@@ -9,14 +9,14 @@ Java 8 or better
 # Instructions:
 
 
-# Jar file:
+### Jar file:
 
 Type `sudo java -jar functionFix.jar`
 
     the reason that we need "sudo" is that the directory is in a restricted area
 
 
-# Source Code Compilation:
+### Source Code Compilation:
 
 Clone `https://github.com/dagem/function-fix.git`
 
